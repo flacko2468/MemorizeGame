@@ -55,7 +55,9 @@ struct ThemeEditor: View {
                 }
             }
         }
-        .onAppear { self.themeName = self.theme.name }
+        .onAppear {
+            print(theme)
+            self.themeName = theme.name }
     }
     
     // MARK: - Drawing Constants

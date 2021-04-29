@@ -8,16 +8,19 @@
 import SwiftUI
 import Combine
 
-class ThemeStore: ObservableObject
+class ThemeStore: ObservableObject, Identifiable
 {
     
-    @Published var themes: [Theme] =
-        [Theme(name: "Halloween", emojis: ["🎃", "🥸", "🤡", "👹", "👻", "👽"], color: UIColor.orange.rgb),
-         Theme(name: "Christmas", emojis: ["🎄", "🎁", "❄️", "☃️", "🎅"], color: UIColor.green.rgb),
-         Theme(name: "Flags", emojis: ["🇦🇺", "🇦🇼", "🇦🇽", "🇦🇿", "🇧🇦", "🇧🇧", "🇧🇩", "🇧🇪", "🇧🇫", "🇧🇬", "🇧🇭" ,"🇧🇮"], color: UIColor.blue.rgb),
-         Theme(name: "Fruit", emojis: ["🍇", "🍈", "🍉", "🍊"], color: UIColor.purple.rgb),
-         Theme(name: "Animals", emojis: ["🐮", "🐷", "🐯", "🐶", "🐵"], color: UIColor.yellow.rgb),
-         Theme(name: "COVID", emojis: ["💉", "🩹", "🧑‍🔬", "🧑‍⚕️"], color: UIColor.red.rgb)]
+    @Published var themes: [Theme] = []
+    
+    init() {
+        themes.append(Theme(name: "Halloween", emojis: ["🎃", "🥸", "🤡", "👹", "👻", "👽"], color: UIColor.orange.rgb))
+        themes.append(Theme(name: "Christmas", emojis: ["🎄", "🎁", "❄️", "☃️", "🎅"], color: UIColor.green.rgb))
+        themes.append(Theme(name: "Flags", emojis: ["🇦🇺", "🇦🇼", "🇦🇽", "🇦🇿", "🇧🇦", "🇧🇧", "🇧🇩", "🇧🇪", "🇧🇫", "🇧🇬", "🇧🇭" ,"🇧🇮"], color: UIColor.blue.rgb))
+        themes.append(Theme(name: "Fruit", emojis: ["🍇", "🍈", "🍉", "🍊"], color: UIColor.purple.rgb))
+        themes.append(Theme(name: "Animals", emojis: ["🐮", "🐷", "🐯", "🐶", "🐵"], color: UIColor.yellow.rgb))
+        themes.append(Theme(name: "COVID", emojis: ["💉", "🩹", "🧑‍🔬", "🧑‍⚕️"], color: UIColor.red.rgb))
+    }
 
 }
 
