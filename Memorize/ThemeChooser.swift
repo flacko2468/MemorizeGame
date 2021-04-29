@@ -23,27 +23,7 @@ struct ThemeChooser: View {
     
     @State private var editMode: EditMode = .inactive
     @State private var showThemeEditor = false
-    
-    
-    @ViewBuilder
-    private func editingButton(theme: Theme) -> some View {
-        HStack {
-            if editMode.isEditing {
-                    
-                    Image(systemName: "square.and.pencil").imageScale(.large)
-                        .foregroundColor(Color(theme.color))
-                        .onTapGesture {
-                            self.showThemeEditor = true
-                            print(theme.name)
-                        }
-                        .sheet(isPresented: $showThemeEditor) {
-                            ThemeEditor(isShowing: self.$showThemeEditor)
-                                .environmentObject(theme)
-                                .frame(minWidth: 300, minHeight: 500)
-                        }
-            }
-        }
-    }
+    @State var chosenTheme: Theme? = nil
     
     
     var body: some View {
@@ -55,7 +35,18 @@ struct ThemeChooser: View {
                     )
                     {
                         HStack {
-                            editingButton(theme: theme)
+                            HStack {
+                                if editMode.isEditing {
+                                        
+                                        Image(systemName: "square.and.pencil").imageScale(.large)
+                                            .foregroundColor(Color(theme.color))
+                                            .onTapGesture {
+                                                self.chosenTheme = theme
+                                                self.showThemeEditor = true
+                                                print(theme.name)
+                                            }
+                                }
+                            }
                             
                             VStack(alignment: HorizontalAlignment.leading) {
                                 Text("\(theme.name)")
@@ -99,6 +90,11 @@ struct ThemeChooser: View {
             .environment(\.editMode, $editMode)
         }
         .navigationViewStyle(StackNavigationViewStyle())
+        .sheet(isPresented: $showThemeEditor) {
+            ThemeEditor(isShowing: self.$showThemeEditor)
+                .environmentObject(chosenTheme!)
+                .frame(minWidth: 300, minHeight: 500)
+        }
 //        .onAppear {
 //            self.themes = self.store.themes
 //        }
