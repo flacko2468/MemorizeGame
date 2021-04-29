@@ -98,6 +98,7 @@ struct ThemeChooser: View {
             )
             .environment(\.editMode, $editMode)
         }
+        .navigationViewStyle(StackNavigationViewStyle())
 //        .onAppear {
 //            self.themes = self.store.themes
 //        }
