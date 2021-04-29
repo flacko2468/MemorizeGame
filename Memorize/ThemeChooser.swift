@@ -23,7 +23,7 @@ struct ThemeChooser: View {
     
     @State private var editMode: EditMode = .inactive
     @State private var showThemeEditor = false
-    @State var chosenTheme: Theme? = nil
+    @State var chosenTheme: Theme = Theme(name: "", emojis: [], color: UIColor.orange.rgb)
     
     
     var body: some View {
@@ -91,12 +91,11 @@ struct ThemeChooser: View {
         }
         .navigationViewStyle(StackNavigationViewStyle())
         .sheet(isPresented: $showThemeEditor) {
-            ThemeEditor(isShowing: self.$showThemeEditor)
-                .environmentObject(chosenTheme!)
+            ThemeEditor(theme: self.$chosenTheme, isShowing: self.$showThemeEditor)
                 .frame(minWidth: 300, minHeight: 500)
         }
 //        .onAppear {
-//            self.themes = self.store.themes
+//            self.chosenTheme = Theme(name: "", emojis: [], color: UIColor.orange.rgb)
 //        }
     }
 

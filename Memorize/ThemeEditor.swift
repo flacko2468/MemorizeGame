@@ -7,9 +7,8 @@
 
 import SwiftUI
 struct ThemeEditor: View {
-    @EnvironmentObject var theme: Theme
+    @Binding var theme: Theme
     @Binding var isShowing: Bool
-    //@EnvironmentObject var store: ThemeStore
     
     @State private var themeName: String = ""
     @State private var emojisToAdd: String = ""
